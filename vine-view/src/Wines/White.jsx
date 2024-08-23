@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import ShowWines from '../components/ShowWines'
 
 const White = () => {
   const [wine, setWine] = useState()
+  const [selectedWine, setSelectedWine] = useState(null)
 
 
   useEffect(() => {
@@ -24,20 +25,35 @@ const White = () => {
       })
       .catch((error) => console.error('Error fetching data:', error))
   }, [])
+
+  const handleWineClick = (wines) => {
+    setSelectedWine(wines)
+  }
+
   return (
-    <div>
+    <div className='flex'>
+    <div className='w-1/2 h-screen overflow-y-scroll'>
       {Array.isArray(wine) && wine.length > 0 ? (
         wine.map((wines) => (
-          <div key={wines.id} className='mt-2'>
-            <Link to={`/white/${wines._id}`} className='text-decoration-none'>
+          <div className='mt-2'>
+            <div 
+              key={wines._id} 
+              className='mt-2' 
+              style={{ cursor: 'pointer' }} 
+              onClick={() => handleWineClick(wines)}
+            >
               <h1>{wines.winery}</h1>
               <h1>{wines.wine}</h1>
-            </Link>
+            </div>
           </div>
         ))
       ) : (
         <p>Loading...</p>
       )}
+    </div>
+    <div className='w-1/2'>
+    {selectedWine && <ShowWines wines={selectedWine} />}
+    </div>
     </div>
   )
 }

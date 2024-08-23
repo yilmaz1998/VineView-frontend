@@ -9,6 +9,8 @@ import Sparkling from "./Wines/Sparkling"
 import Dessert from "./Wines/Dessert"
 import Port from "./Wines/Port"
 import ShowWines from './components/ShowWines'
+import LoginPage from './components/LoginPage'
+import SignupPage from './components/SignupPage'
 
 function App() {
 
@@ -23,6 +25,8 @@ function App() {
     <Route path="/dessert" element={<Dessert />} />
     <Route path="/port" element={<Port />} />
     <Route path="/:type/:id" element={<ShowWines />} />
+    <Route path="/login" element={<LoginPage />} />
+    <Route path="/signup" element={<SignupPage />} />
     </Routes>
   </Fragment>
 )}
