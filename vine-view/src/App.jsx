@@ -11,6 +11,7 @@ import Port from "./Wines/Port"
 import ShowWines from './components/ShowWines'
 import LoginPage from './components/LoginPage'
 import SignupPage from './components/SignupPage'
+import MyFavorites from './components/MyFavorites'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
     <Route path="/:type/:id" element={<ShowWines />} />
     <Route path="/login" element={<LoginPage />} />
     <Route path="/signup" element={<SignupPage />} />
+    <Route path="/favorites" element={<MyFavorites />} />
     </Routes>
   </Fragment>
 )}
