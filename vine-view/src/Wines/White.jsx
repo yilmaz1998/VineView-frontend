@@ -92,7 +92,7 @@ const White = () => {
     {selectedWine && <ShowWines wines={selectedWine} />}
     {selectedWine && <button onClick={handleFavorite} class="btn btn-success">Add to Favorites</button> }
     {error && <p className='mt-2 font-bold text-red-500'>{error}</p>}
-    {selectedWine && <NewReview wineId={selectedWine._id} />}
+    {selectedWine && <NewReview wineId={selectedWine._id} selectedWine={selectedWine} />}
     </div>
     </div>
     </div>

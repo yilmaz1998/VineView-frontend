@@ -1,10 +1,23 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import ShowReview from '../components/ShowReview'
 
-const NewReview = ( {wineId }) => {
+const NewReview = ({ wineId, selectedWine }) => {
     const [title, setTitle] = useState('')
     const [review, setReview] = useState('')
     const [error, setError] = useState('')
+    const [reviews, setReviews] = useState([])
+
+    const fetchReviews = () => {
+      fetch(`http://localhost:3000/review/${wineId}`)
+        .then((res) => res.json())
+        .then((data) => setReviews(data))
+        .catch((error) => console.error('Error fetching reviews:', error))
+    }
+
+    useEffect(() => {
+      fetchReviews()
+    }, [wineId])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -30,7 +43,9 @@ const NewReview = ( {wineId }) => {
         })
         .then((data) => {
           if(data) {
-            setError("Your review has been added successfully.")
+            setTitle('')
+            setReview('')
+            fetchReviews()
           }
         })
         .catch((error) => {
@@ -38,10 +53,11 @@ const NewReview = ( {wineId }) => {
             setError(error.message)
           })
     }
+
   return (
     <div className='mr-4'>
     <h1 className='text-2xl mt-4 mb-2'>Add a Review</h1>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => handleSubmit(e)}>
     <div class="mb-3">
   <label class="form-label">Title</label>
   <input class="form-control" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title"/>
@@ -53,6 +69,7 @@ const NewReview = ( {wineId }) => {
 </div>
 </form>
 {error && <p className='font-bold text-red-500 mt-2'>{error}</p>}
+{selectedWine && <ShowReview reviews={reviews} setReviews={setReviews} />}
 </div>
   )
 }
