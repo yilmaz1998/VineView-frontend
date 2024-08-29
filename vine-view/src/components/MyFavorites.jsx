@@ -79,6 +79,8 @@ const MyFavorites = () => {
       }
 
     return (
+        <div>
+        <h1 className='text-4xl text-center mb-2'>My Favorites</h1>
         <div className='flex'>
             <div className='w-1/2 h-screen overflow-y-scroll'>
                 {favorites.length > 0 ? (
@@ -105,6 +107,7 @@ const MyFavorites = () => {
             <div className='w-1/2'>
             {selectedWine && <ShowFavorites wine={selectedWine} />}
             </div>
+        </div>
         </div>
     )
 }

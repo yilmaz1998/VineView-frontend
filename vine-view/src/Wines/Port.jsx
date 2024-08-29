@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import ShowWines from '../components/ShowWines'
+import NewReview from '../components/NewReview'
 
 const Port = () => {
   const [wine, setWine] = useState()
@@ -65,6 +66,8 @@ const Port = () => {
 
 
   return (
+    <div>
+    <h1 className='text-4xl text-center mb-2'>Port Wines</h1>
     <div className='flex'>
     <div className='w-1/2 h-screen overflow-y-scroll'>
       {Array.isArray(wine) && wine.length > 0 ? (
@@ -89,6 +92,8 @@ const Port = () => {
     {selectedWine && <ShowWines wines={selectedWine} />}
     {selectedWine && <button onClick={handleFavorite} class="btn btn-success">Add to Favorites</button> }
     {error && <p className='mt-2 font-bold text-red-500'>{error}</p>}
+    {selectedWine && <NewReview wineId={selectedWine._id} />}
+    </div>
     </div>
     </div>
   )
