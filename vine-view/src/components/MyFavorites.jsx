@@ -4,6 +4,7 @@ import ShowFavorites from './ShowFavorites'
 const MyFavorites = () => {
     const [favorites, setFavorites] = useState([])
     const [selectedWine, setSelectedWine] = useState(null)
+    const [searchQuery, setSearchQuery] = useState('')
     
     useEffect(() => {
         fetch("http://localhost:3000/favorite", {
@@ -78,13 +79,25 @@ const MyFavorites = () => {
         setSelectedWine(wine)
       }
 
+      const filteredWines = Array.isArray(favorites) ? favorites.filter(e => 
+        e.wine.wine.toLowerCase().includes(searchQuery.toLowerCase())
+    ) : []
+    
+
     return (
         <div>
         <h1 className='text-4xl text-center mb-2'>My Favorites</h1>
         <div className='flex'>
             <div className='w-1/2 h-screen overflow-y-scroll'>
-                {favorites.length > 0 ? (
-                    favorites.map((favorite) => {
+            <input 
+            type="text" 
+            placeholder="Search by wine" 
+            value={searchQuery} 
+            onChange={(e) => setSearchQuery(e.target.value)} 
+            className='form-control'
+            />
+                {filteredWines.length > 0 ? (
+                    filteredWines.map((favorite) => {
                         const wine = favorite.wine
                         return (
                             <div 

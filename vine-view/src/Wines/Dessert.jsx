@@ -7,8 +7,7 @@ const Dessert = () => {
   const [selectedWine, setSelectedWine] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [error, setError] = useState(null)
-
-
+  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
            
@@ -67,14 +66,24 @@ const Dessert = () => {
     .catch((error) => console.error('Error adding to favorites:', error))
   }
 
+  const filteredWines = Array.isArray(wine) ? wine.filter(e => 
+    e.wine.toLowerCase().includes(searchQuery.toLowerCase())
+  ) : []
 
   return (
     <div>
     <h1 className='text-4xl text-center mb-2'>Dessert Wines</h1>
     <div className='flex'>
     <div className='w-1/2 h-screen overflow-y-scroll'>
-      {Array.isArray(wine) && wine.length > 0 ? (
-        wine.map((wines) => (
+    <input 
+      type="text" 
+      placeholder="Search by wine" 
+      value={searchQuery} 
+      onChange={(e) => setSearchQuery(e.target.value)} 
+      className='form-control'
+      />
+      {Array.isArray(filteredWines) && filteredWines.length > 0 ? (
+        filteredWines.map((wines) => (
           <div className='mt-2'>
             <div 
               key={wines._id} 

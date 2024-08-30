@@ -69,7 +69,7 @@ const NewReview = ({ wineId, selectedWine }) => {
 </div>
 </form>
 {error && <p className='font-bold text-red-500 mt-2'>{error}</p>}
-{selectedWine && <ShowReview reviews={reviews} setReviews={setReviews} />}
+{selectedWine && <ShowReview reviews={reviews} setReviews={setReviews} fetchReviews={fetchReviews} />}
 </div>
   )
 }

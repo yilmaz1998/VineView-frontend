@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 import EditReview from '../components/EditReview';
 
-const ShowReview = ({ reviews, setReviews }) => {
+const ShowReview = ({ reviews, setReviews, fetchReviews }) => {
   const [error, setError] = useState(null)
   const token = localStorage.getItem("token")
 
@@ -38,11 +38,11 @@ const ShowReview = ({ reviews, setReviews }) => {
           <p>Review: {review.review}</p>
           <p>Created By: {review.user.username}</p>
           {token ? (
-            <div>
+            <div className='flex'>
           <button onClick={() => handleRemove(review._id)} className='btn btn-danger'>
             Delete
           </button>
-          <EditReview />
+          <EditReview review={review} setReviews={setReviews} fetchReviews={fetchReviews} />
           </div>
           ) : (
             null
