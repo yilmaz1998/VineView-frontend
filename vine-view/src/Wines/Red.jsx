@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import ShowWines from '../components/ShowWines'
 import NewReview from '../components/NewReview'
+import { motion } from 'framer-motion'
 
 const Red = () => {
   const URL = import.meta.env.VITE_API_URL
@@ -84,13 +85,17 @@ const Red = () => {
       className='form-control'
       /></div>
     <div className='flex'>
-    <div className='w-1/2 h-screen overflow-y-scroll'>
+    <motion.div
+    initial={{ x: "-50vw" }}
+    animate={{ x: 1 }}
+    transition={{ duration: 0.5 }}
+    className='w-1/2 h-screen overflow-y-scroll'>
       {Array.isArray(filteredWines) && filteredWines.length > 0 ? (
         filteredWines.map((wines) => (
           <div>
             <div 
               key={wines._id} 
-              className='mb-2 text-center border-1 border-black bg-white bg-opacity-75 text-black' 
+              className='wine mb-2 text-center border-1 border-black bg-white text-black'
               style={{ cursor: 'pointer' }} 
               onClick={() => handleWineClick(wines)}
             >
@@ -102,11 +107,11 @@ const Red = () => {
       ) : (
         <p>Loading...</p>
       )}
-    </div>
+    </motion.div>
     <div className='w-1/2'>
     {selectedWine && <ShowWines wines={selectedWine} />}
+    {error && <p className='mt-2 bg-white font-bold text-red-500'>{error}</p>}
     {selectedWine && <button onClick={handleFavorite} class="mt-2 btn btn-success">Add to Favorites</button> }
-    {error && <p className='mt-2 font-bold text-red-500'>{error}</p>}
     {selectedWine && <NewReview wineId={selectedWine._id} selectedWine={selectedWine} />}
     </div>
     </div>

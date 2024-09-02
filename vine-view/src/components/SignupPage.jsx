@@ -34,7 +34,7 @@ const SignupPage = () => {
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
-    className='text-center mt-48 text-black'
+    className='signup text-center mt-48 text-black bg-gray-50/75 rounded-full'
     >
       <h1 className='text-4xl mb-4'>Sign Up Page</h1>
       <form onSubmit={handleSubmit} className="mx-auto max-w-lg">

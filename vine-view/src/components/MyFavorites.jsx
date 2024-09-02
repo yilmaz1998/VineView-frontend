@@ -108,7 +108,7 @@ const MyFavorites = () => {
                         return (
                             <div 
                                 key={favorite._id} 
-                                className='mb-2 text-center border-1 border-black bg-white bg-opacity-75 text-black'  
+                                className='wine mb-2 text-center border-1 border-black bg-white text-black'
                                 style={{ cursor: 'pointer' }}
                                 onClick={() => handleWineClick(wine)}
                             >

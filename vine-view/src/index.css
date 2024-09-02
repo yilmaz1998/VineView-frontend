@@ -26,6 +26,20 @@
 }
 
 body {
-    background-color: #5780c1;
+    background-image: url("/dessert-wines-what-to-know-FT-BLOG0122-3b0040474802467bb57ea6ee5e4acd92.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: aliceblue;
+    font-family: "Raleway", sans-serif;
+}
+
+.wine {
+    opacity: 92%;
+}
+
+@media only screen and (max-width: 500px) {
+    .signup {
+        border-radius: 120px;
+    }
 }

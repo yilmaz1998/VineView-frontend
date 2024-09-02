@@ -59,7 +59,7 @@ const NewReview = ({ wineId, selectedWine }) => {
 <div>
 <button
         type="button"
-        className="btn btn-primary"
+        className="btn btn-primary mt-1 flex"
         data-bs-toggle="modal"
         data-bs-target={`#id${review._id}`}
       >
