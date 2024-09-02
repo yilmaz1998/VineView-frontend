@@ -35,7 +35,7 @@ const LoginPage = () => {
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
-    className='signup text-center mt-48 text-black bg-gray-50/75 rounded-full'
+    className='signup text-center mt-48 text-black bg-gray-50/75 rounded-full' 
     >
       <h1 className='text-4xl mb-4'>Login Page</h1>
       <form onSubmit={handleSubmit} className="mx-auto max-w-lg">

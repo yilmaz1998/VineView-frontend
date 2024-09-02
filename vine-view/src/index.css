@@ -40,6 +40,6 @@ body {
 
 @media only screen and (max-width: 500px) {
     .signup {
-        border-radius: 120px;
+        border-radius: 60px;
     }
 }
