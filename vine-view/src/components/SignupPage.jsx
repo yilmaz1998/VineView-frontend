@@ -33,7 +33,7 @@ const SignupPage = () => {
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
-    className='text-center mt-48'
+    className='text-center mt-48 text-black'
     >
       <h1 className='text-4xl mb-4'>Sign Up Page</h1>
       <form onSubmit={handleSubmit} className="mx-auto max-w-lg">
@@ -52,7 +52,7 @@ const SignupPage = () => {
       <button type="submit" className="btn btn-primary mt-2">Sign Up</button>
        </form>
        <p className='mt-4'>If you have an account, go to log in page from the link below.</p>
-       <Link class="btn btn-outline-secondary mt-2" to='/login'>Log In Page</Link>
+       <Link class="btn btn-warning mt-2" to='/login'>Log In Page</Link>
     </motion.div>
   )
 }

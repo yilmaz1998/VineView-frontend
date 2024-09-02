@@ -30,12 +30,12 @@ const ShowReview = ({ reviews, setReviews, fetchReviews }) => {
     <h2 className='text-3xl'>Reviews</h2>
     {error && <p className='text-red-500'>{error}</p>}
     {reviews.length === 0 ? (
-      <p className='text-gray-500'>No reviews for this wine.</p>
+      <p>No reviews for this wine.</p>
     ) : (
       reviews.map((review, index) => (
-        <div key={index}>
-          <p className='text-gray-700 break-words overflow-hidden max-w-full'><span className='font-bold'>Title:</span> {review.title}</p>
-          <p className='text-gray-700 break-words overflow-hidden max-w-full'><span className='font-bold'>Review:</span> {review.review}</p>
+        <div key={index} className='bg-white mt-2 text-black'>
+          <h1 className='break-words overflow-hidden max-w-full text-xl'> {review.title}</h1>
+          <p className='break-words overflow-hidden max-w-full'><span className='font-bold'>Review:</span> {review.review}</p>
           <p><span className='font-bold'>Created by:</span> {review.user.username}</p>
           {token ? (
             <div className='flex'>

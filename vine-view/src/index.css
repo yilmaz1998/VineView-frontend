@@ -20,11 +20,12 @@
     padding: 2rem; 
     max-width: 800px; 
     margin: 0 auto; 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+    text-shadow: 2px 2px 4px rgba(86, 84, 84, 0.7); 
     background-color: black;
     border-radius: 40px;
 }
 
 body {
-    background-color: rgb(209, 209, 209);
+    background-color: #5780c1;
+    color: aliceblue;
 }

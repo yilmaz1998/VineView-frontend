@@ -34,7 +34,7 @@ const LoginPage = () => {
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
-    className='text-center mt-48'
+    className='text-center mt-48 text-black'
     >
       <h1 className='text-4xl mb-4'>Login Page</h1>
       <form onSubmit={handleSubmit} className="mx-auto max-w-lg">
@@ -50,7 +50,7 @@ const LoginPage = () => {
        </form>
       <div>
         <p className='mt-4'>If you don't have an account, go to sign up page from the link below.</p>
-        <Link class="btn btn-outline-secondary mt-2" to='/signup'>Sign up</Link>
+        <Link class="btn btn-warning mt-2" to='/signup'>Sign up</Link>
       </div>
       </motion.div>
   )

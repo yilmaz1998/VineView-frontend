@@ -56,7 +56,7 @@ const Rose = () => {
     })
     .then((res) => {
       if(!res.ok) {
-        setError('Drink is already in favorites')
+        setError('Wine is already in favorites')
         throw new Error("Failed to add to favorites")
       }else {
         res.json()
@@ -74,22 +74,23 @@ const Rose = () => {
 
   return (
     <div>
-  <h1 className='text-4xl text-center mb-2'>Rose Wines</h1>
+    <div className='text-center mb-3'>
+  <h1 className='text-3xl'>Rose Wines</h1>
+   <input 
+    type="text" 
+    placeholder="Search by wine" 
+    value={searchQuery} 
+    onChange={(e) => setSearchQuery(e.target.value)} 
+    className='form-control'
+    /></div>
     <div className='flex'>
     <div className='w-1/2 h-screen overflow-y-scroll'> 
-    <input 
-      type="text" 
-      placeholder="Search by wine" 
-      value={searchQuery} 
-      onChange={(e) => setSearchQuery(e.target.value)} 
-      className='form-control'
-      />
       {Array.isArray(filteredWines) && filteredWines.length > 0 ? (
         filteredWines.map((wines) => (
-          <div className='mt-2 border-1 border-black text-center'>
+          <div>
             <div 
               key={wines._id} 
-              className='mt-2' 
+              className='mb-2 text-center border-1 border-black bg-white bg-opacity-75 text-black' 
               style={{ cursor: 'pointer' }} 
               onClick={() => handleWineClick(wines)}
             >
@@ -104,7 +105,7 @@ const Rose = () => {
     </div>
     <div className='w-1/2'>
     {selectedWine && <ShowWines wines={selectedWine} />}
-    {selectedWine && <button onClick={handleFavorite} class="btn btn-success">Add to Favorites</button> }
+    {selectedWine && <button onClick={handleFavorite} class="mt-2 btn btn-success">Add to Favorites</button> }
     {error && <p className='mt-2 font-bold text-red-500'>{error}</p>}
     {selectedWine && <NewReview wineId={selectedWine._id} selectedWine={selectedWine} />}
     </div>

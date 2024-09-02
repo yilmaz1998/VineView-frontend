@@ -92,22 +92,22 @@ const MyFavorites = () => {
         transition={{ duration: 0.5 }}
         >
         <h1 className='text-4xl text-center mb-2'>My Favorites</h1>
-        <div className='flex'>
-            <div className='w-1/2 h-screen overflow-y-scroll'>
-            <input 
+        <input 
             type="text" 
             placeholder="Search by wine" 
             value={searchQuery} 
             onChange={(e) => setSearchQuery(e.target.value)} 
             className='form-control'
             />
+        <div className='flex mt-2'>
+            <div className='w-1/2 h-screen overflow-y-scroll'>
                 {filteredWines.length > 0 ? (
                     filteredWines.map((favorite) => {
                         const wine = favorite.wine
                         return (
                             <div 
                                 key={favorite._id} 
-                                className='mt-2' 
+                                className='mb-2 text-center border-1 border-black bg-white bg-opacity-75 text-black'  
                                 style={{ cursor: 'pointer' }}
                                 onClick={() => handleWineClick(wine)}
                             >
