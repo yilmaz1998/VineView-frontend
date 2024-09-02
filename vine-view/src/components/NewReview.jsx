@@ -3,13 +3,14 @@ import { useState, useEffect } from 'react'
 import ShowReview from '../components/ShowReview'
 
 const NewReview = ({ wineId, selectedWine }) => {
+  const URL = import.meta.env.VITE_API_URL
     const [title, setTitle] = useState('')
     const [review, setReview] = useState('')
     const [error, setError] = useState('')
     const [reviews, setReviews] = useState([])
 
     const fetchReviews = () => {
-      fetch(`http://localhost:3000/review/${wineId}`)
+      fetch(`${URL}/review/${wineId}`)
         .then((res) => res.json())
         .then((data) => setReviews(data))
         .catch((error) => console.error('Error fetching reviews:', error))
@@ -28,7 +29,7 @@ const NewReview = ({ wineId, selectedWine }) => {
           return
         }
 
-        fetch("http://localhost:3000/review/new", {
+        fetch(`${URL}/review/new`, {
             method: "POST", 
             headers: {
                 "Content-Type": "application/json",
@@ -137,7 +138,6 @@ const NewReview = ({ wineId, selectedWine }) => {
           </div>
         </div>
       </div>
-{error && <p className='font-bold text-red-500 mt-2'>{error}</p>}
 {selectedWine && <ShowReview reviews={reviews} setReviews={setReviews} fetchReviews={fetchReviews} />}
 </div>
   )

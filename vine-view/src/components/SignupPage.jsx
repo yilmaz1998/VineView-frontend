@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 const SignupPage = () => {
+  const URL = import.meta.env.VITE_API_URL
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [mail, setMail] = useState('')
@@ -11,7 +12,7 @@ const SignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:3000/auth/signup', {
+    const response = await fetch(`${URL}/auth/signup`, {
       method: "POST", 
       headers: {
         'Content-Type': 'application/json'

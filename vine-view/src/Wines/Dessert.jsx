@@ -3,6 +3,7 @@ import ShowWines from '../components/ShowWines'
 import NewReview from '../components/NewReview'
 
 const Dessert = () => {
+  const URL = import.meta.env.VITE_API_URL
   const [wine, setWine] = useState()
   const [selectedWine, setSelectedWine] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -10,11 +11,11 @@ const Dessert = () => {
   const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
-           
+    
     const userToken = localStorage.getItem("token")
     setIsLoggedIn(userToken)
 
-    fetch('http://localhost:3000/wine/dessert', {
+    fetch(`${URL}/wine/dessert`, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -46,7 +47,7 @@ const Dessert = () => {
       return
     }
 
-    fetch("http://localhost:3000/favorite/new", {
+    fetch(`${URL}/favorite/new`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

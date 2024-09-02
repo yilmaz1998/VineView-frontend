@@ -3,12 +3,13 @@ import ShowFavorites from './ShowFavorites'
 import { motion } from 'framer-motion'
 
 const MyFavorites = () => {
+    const URL = import.meta.env.VITE_API_URL
     const [favorites, setFavorites] = useState([])
     const [selectedWine, setSelectedWine] = useState(null)
     const [searchQuery, setSearchQuery] = useState('')
     
     useEffect(() => {
-        fetch("http://localhost:3000/favorite", {
+        fetch(`${URL}/favorite`, {
             headers: {
                 'Content-Type': "application/json",
                 "Authorization": localStorage.getItem('token')
@@ -38,7 +39,7 @@ const MyFavorites = () => {
 
     const handleRemove = (id) => {
 
-        fetch(`http://localhost:3000/favorite/${id}`, {
+        fetch(`${URL}/favorite/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +50,7 @@ const MyFavorites = () => {
             if (res.ok) {
                 console.log('Successfully deleted:', id)
                 setSelectedWine(null)
-                fetch("http://localhost:3000/favorite", {
+                fetch(`${URL}/favorite`, {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: localStorage.getItem('token')

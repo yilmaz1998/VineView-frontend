@@ -2,11 +2,12 @@ import React,{ useState } from 'react';
 import EditReview from '../components/EditReview';
 
 const ShowReview = ({ reviews, setReviews, fetchReviews }) => {
+  const URL = import.meta.env.VITE_API_URL
   const [error, setError] = useState(null)
   const token = localStorage.getItem("token")
 
   const handleRemove = (id) => {
-    fetch(`http://localhost:3000/review/${id}`, {
+    fetch(`${URL}/review/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

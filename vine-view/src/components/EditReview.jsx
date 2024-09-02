@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 const EditReview = ({ review, fetchReviews }) => {
+  const URL = import.meta.env.VITE_API_URL
   const [title, setTitle] = useState(review.title)
   const [content, setContent] = useState(review.review)
   const [error, setError] = useState(null)
@@ -8,7 +9,7 @@ const EditReview = ({ review, fetchReviews }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    fetch(`http://localhost:3000/review/${review._id}`, {
+    fetch(`${URL}/review/${review._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

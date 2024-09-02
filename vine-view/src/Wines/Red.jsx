@@ -3,6 +3,7 @@ import ShowWines from '../components/ShowWines'
 import NewReview from '../components/NewReview'
 
 const Red = () => {
+  const URL = import.meta.env.VITE_API_URL
   const [wine, setWine] = useState()
   const [selectedWine, setSelectedWine] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -15,7 +16,7 @@ const Red = () => {
     const userToken = localStorage.getItem("token")
     setIsLoggedIn(userToken)
 
-    fetch('http://localhost:3000/wine/red', {
+    fetch(`${URL}/wine/red`, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -46,7 +47,7 @@ const Red = () => {
       return
     }
 
-    fetch("http://localhost:3000/favorite/new", {
+    fetch(`${URL}/favorite/new`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
