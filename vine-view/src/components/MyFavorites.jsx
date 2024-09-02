@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ShowFavorites from './ShowFavorites'
+import { motion } from 'framer-motion'
 
 const MyFavorites = () => {
     const [favorites, setFavorites] = useState([])
@@ -85,7 +86,11 @@ const MyFavorites = () => {
     
 
     return (
-        <div>
+        <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        >
         <h1 className='text-4xl text-center mb-2'>My Favorites</h1>
         <div className='flex'>
             <div className='w-1/2 h-screen overflow-y-scroll'>
@@ -121,7 +126,7 @@ const MyFavorites = () => {
             {selectedWine && <ShowFavorites wine={selectedWine} />}
             </div>
         </div>
-        </div>
+        </motion.div>
     )
 }
 

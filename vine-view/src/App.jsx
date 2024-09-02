@@ -11,7 +11,7 @@ import Port from "./Wines/Port"
 import LoginPage from './components/LoginPage'
 import SignupPage from './components/SignupPage'
 import MyFavorites from './components/MyFavorites'
-import NewReview from './components/NewReview'
+import WelcomePage from './components/WelcomePage'
 
 function App() {
 
@@ -19,6 +19,7 @@ function App() {
   <Fragment>
     <Header />
     <Routes>
+    <Route path="/" element={<WelcomePage />} />
     <Route path="/red" element={<Red />} />
     <Route path="/white" element={<White />} />
     <Route path="/rose" element={<Rose />} />

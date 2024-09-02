@@ -5,10 +5,10 @@ const ShowWines = ({ wines }) => {
     <div>
       {wines ? (
         <div>
-              <h1>{wines.winery}</h1>
-              <h1>{wines.wine}</h1>
+              <h1><span className='font-bold'>Winery: </span>{wines.winery}</h1>
+              <h1><span className='font-bold'>Wine: </span>{wines.wine}</h1>
               <img src={wines.image} />
-              <h1>{wines.location}</h1>
+              <h1><span className='font-bold'>Location: </span>{wines.location}</h1>
         </div>
       ) : (
         <div>Wine not found</div>

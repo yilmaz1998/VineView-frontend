@@ -84,7 +84,7 @@ const Dessert = () => {
       />
       {Array.isArray(filteredWines) && filteredWines.length > 0 ? (
         filteredWines.map((wines) => (
-          <div className='mt-2'>
+          <div className='mt-2 border-1 border-black text-center'>
             <div 
               key={wines._id} 
               className='mt-2' 

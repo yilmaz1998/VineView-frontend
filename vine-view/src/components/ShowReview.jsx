@@ -17,7 +17,7 @@ const ShowReview = ({ reviews, setReviews, fetchReviews }) => {
         if (res.ok) {
           setReviews(reviews.filter((review) => review._id !== id))
         } else {
-          throw new Error('Failed to delete review')
+         alert('Failed to delete review.')
         }
       })
       .catch((error) => {
@@ -34,9 +34,9 @@ const ShowReview = ({ reviews, setReviews, fetchReviews }) => {
     ) : (
       reviews.map((review, index) => (
         <div key={index}>
-          <p>Title: {review.title}</p>
-          <p>Review: {review.review}</p>
-          <p>Created By: {review.user.username}</p>
+          <p className='text-gray-700 break-words overflow-hidden max-w-full'><span className='font-bold'>Title:</span> {review.title}</p>
+          <p className='text-gray-700 break-words overflow-hidden max-w-full'><span className='font-bold'>Review:</span> {review.review}</p>
+          <p><span className='font-bold'>Created by:</span> {review.user.username}</p>
           {token ? (
             <div className='flex'>
           <button onClick={() => handleRemove(review._id)} className='btn btn-danger'>

@@ -24,7 +24,7 @@ const LoginPage = () => {
       localStorage.setItem('token', data.token)
       localStorage.setItem('username', data.user.username)
       console.log(data.user.username)
-      navigate('/')
+      navigate('/favorites')
     } else {
       alert('Login failed')
     }
