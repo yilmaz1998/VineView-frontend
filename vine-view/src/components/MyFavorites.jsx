@@ -101,22 +101,23 @@ const MyFavorites = () => {
             className='form-control'
             />
         <div className='flex mt-2'>
-            <div className='w-1/2 h-screen overflow-y-scroll'>
+            <div className='w-1/2 h-screen overflow-y-scroll border-1 border-black'>
                 {filteredWines.length > 0 ? (
                     filteredWines.map((favorite) => {
-                        const wine = favorite.wine
                         return (
-                            <div 
-                                key={favorite._id} 
-                                className='wine mb-2 text-center border-1 border-black bg-white text-black'
-                                style={{ cursor: 'pointer' }}
-                                onClick={() => handleWineClick(wine)}
-                            >
-                                    <p>{capitalizeFirstLetter(wine.type) || 'No type'}</p>
-                                    <h1>{wine.winery || 'No winery'}</h1>
-                                    <h2>{wine.wine || 'No wine name'}</h2>
-                                    <button onClick={() => handleRemove(favorite._id)} className='btn btn-danger p-1'>Remove from Favorites</button>
-                            </div>
+<div 
+    key={favorite._id} 
+    className={`wine mb-1 text-center border-1 border-black text-black ${
+        selectedWine && selectedWine._id === favorite.wine._id ? 'bg-blue-300' : 'bg-white'
+    }`}
+    style={{ cursor: 'pointer' }}
+    onClick={() => handleWineClick(favorite.wine)}
+>
+    <p>{capitalizeFirstLetter(favorite.wine.type) || 'No type'}</p>
+    <h1>{favorite.wine.winery || 'No winery'}</h1>
+    <h2>{favorite.wine.wine || 'No wine name'}</h2>
+    <button onClick={() => handleRemove(favorite._id)} className='btn btn-danger p-1'>Remove from Favorites</button>
+</div>
                         )
                     })
                 ) : (

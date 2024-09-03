@@ -2,7 +2,7 @@ import React from 'react'
 
 const ShowWines = ({ wines }) => {
   return (
-    <div className='bg-white flex justify-center items-center text-black'>
+    <div className='show bg-white flex justify-center items-center text-black'>
       {wines ? (
         <div>
               <h1><span className='font-bold'>Winery: </span>{wines.winery}</h1>

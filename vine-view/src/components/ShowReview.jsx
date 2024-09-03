@@ -34,7 +34,7 @@ const ShowReview = ({ reviews, setReviews, fetchReviews }) => {
       <p>No reviews for this wine.</p>
     ) : (
       reviews.map((review, index) => (
-        <div key={index} className='bg-white mt-2 text-black'>
+        <div key={index} className='p-1 bg-white mt-2 text-black'>
           <h1 className='break-words overflow-hidden max-w-full text-xl'> {review.title}</h1>
           <p className='break-words overflow-hidden max-w-full'><span className='font-bold'>Review:</span> {review.review}</p>
           <p><span className='font-bold'>Created by:</span> {review.user.username}</p>

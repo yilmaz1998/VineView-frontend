@@ -90,13 +90,15 @@ const Rose = () => {
     initial={{ x: "-50vw" }}
     animate={{ x: 1 }}
     transition={{ duration: 0.5 }}
-    className='w-1/2 h-screen overflow-y-scroll'>
+    className='w-1/2 h-screen overflow-y-scroll border-1 border-black'>
       {Array.isArray(filteredWines) && filteredWines.length > 0 ? (
         filteredWines.map((wines) => (
           <div>
             <div 
               key={wines._id} 
-              className='wine mb-2 text-center border-1 border-black bg-white text-black'
+              className={`wine mb-1 text-center border-1 border-black text-black ${
+                selectedWine && selectedWine._id === wines._id ? 'bg-blue-300' : 'bg-white'
+              }`}
               style={{ cursor: 'pointer' }} 
               onClick={() => handleWineClick(wines)}
             >

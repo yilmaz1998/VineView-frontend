@@ -42,4 +42,7 @@ body {
     .signup {
         border-radius: 60px;
     }
+    .show {
+        padding: 3px;
+    }
 }
