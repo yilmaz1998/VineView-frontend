@@ -27,8 +27,8 @@ const ShowReview = ({ reviews, setReviews, fetchReviews }) => {
   }
 
   return (
-    <div>
-    <h2 className='text-3xl'>Reviews</h2>
+    <div className='mt-2'>
+    <h2 className='text-3xl font-bold'>Reviews</h2>
     {error && <p className='text-red-500'>{error}</p>}
     {reviews.length === 0 ? (
       <p>No reviews for this wine.</p>

@@ -85,9 +85,9 @@ const Dessert = () => {
       /></div>
     <div className='flex'>
     <motion.div
-    initial={{ x: "-50vw" }}
+    initial={{ x: "-90vw" }}
     animate={{ x: 1 }}
-    transition={{ duration: 0.5 }}
+    transition={{ duration: 1.2 }}
     className='w-1/2 h-screen overflow-y-scroll border-1 border-black'>
       {Array.isArray(filteredWines) && filteredWines.length > 0 ? (
         filteredWines.map((wines) => (

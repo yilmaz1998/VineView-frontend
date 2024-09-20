@@ -38,7 +38,7 @@ body {
     opacity: 92%;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
     .signup {
         border-radius: 60px;
     }
