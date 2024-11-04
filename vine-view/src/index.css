@@ -21,6 +21,7 @@
     text-shadow: 2px 2px 4px rgba(86, 84, 84, 0.7); 
     background-color: black;
     border-radius: 40px;
+    opacity: 75%;
 }
 
 body {
