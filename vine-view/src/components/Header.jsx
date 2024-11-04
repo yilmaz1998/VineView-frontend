@@ -16,10 +16,10 @@ const Header = () => {
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <Link className="navbar-brand ml-2" to={'/'}>VineView</Link>
     <Link className="navbar-brand ml-4" to={'/favorites'}>My Favorites</Link>
-    <div class="dropdown mx-auto p-2">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="dropdown mx-auto">
+  < button class="dropdown btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown">
     Wine Types
-  </a>
+  </button>
   <ul class="dropdown-menu">
     <li><Link class="dropdown-item" to={"/red"}>Red Wines</Link></li>
     <li><Link class="dropdown-item" to={"/white"}>White Wines</Link></li>

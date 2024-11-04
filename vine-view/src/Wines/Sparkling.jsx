@@ -74,7 +74,10 @@ const Sparkling = () => {
 
 
   return (
-    <div>
+    <motion.div
+    initial={{ opacity:0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 2 }}>
       <div className='text-center mb-3'>
     <h1 className='text-3xl'>Sparkling Wines</h1>
      <input 
@@ -85,11 +88,8 @@ const Sparkling = () => {
       className='form-control'
       /></div>
     <div className='flex'>
-    <motion.div
-    initial={{ x: "-90vw" }}
-    animate={{ x: 1 }}
-    transition={{ duration: 1.2 }}
-    className='w-1/2 h-screen overflow-y-scroll border-1 border-black'>
+    <div
+    className='scroll w-1/2 h-screen overflow-y-scroll border-1 border-black'>
       {Array.isArray(filteredWines) && filteredWines.length > 0 ? (
         filteredWines.map((wines) => (
           <div>
@@ -109,15 +109,15 @@ const Sparkling = () => {
       ) : (
         <p>Loading...</p>
       )}
-    </motion.div>
-    <div className='w-1/2'>
+    </div>
+    <div className='otherside w-1/2'>
     {selectedWine && <ShowWines wines={selectedWine} />}
     {error && <p className='mt-2 bg-white font-bold text-red-500'>{error}</p>}
     {selectedWine && <button onClick={handleFavorite} class="mt-2 btn btn-success">Add to Favorites</button> }
     {selectedWine && <NewReview wineId={selectedWine._id} selectedWine={selectedWine} />}
     </div>
     </div>
-    </div>
+    </motion.div>
   )
 }
 

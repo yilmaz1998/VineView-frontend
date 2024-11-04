@@ -1,5 +1,5 @@
-import { Fragment } from 'react'
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
+import { AnimatePresence } from 'framer-motion'
 
 import Header from "./components/Header"
 import Red from "./Wines/Red"
@@ -14,11 +14,11 @@ import MyFavorites from './components/MyFavorites'
 import WelcomePage from './components/WelcomePage'
 
 function App() {
-
+const location = useLocation()
   return ( 
-  <Fragment>
+    <AnimatePresence>
     <Header />
-    <Routes>
+    <Routes location={location} key={location.pathname}>
     <Route path="/" element={<WelcomePage />} />
     <Route path="/red" element={<Red />} />
     <Route path="/white" element={<White />} />
@@ -30,7 +30,7 @@ function App() {
     <Route path="/signup" element={<SignupPage />} />
     <Route path="/favorites" element={<MyFavorites />} />
     </Routes>
-  </Fragment>
+    </AnimatePresence>
 )}
 
 export default App
