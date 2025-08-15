@@ -51,4 +51,7 @@ body {
     .otherside {
         width: 40%;
     }
+    .link {
+        font-size: 12px;
+    }
 }

@@ -84,7 +84,7 @@ const Dessert = () => {
       placeholder="Search by wine" 
       value={searchQuery} 
       onChange={(e) => setSearchQuery(e.target.value)} 
-      className='form-control'
+      className='form-control mt-12'
       /></div>
     <div className='flex'>
     <div
