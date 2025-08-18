@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom"
 import { AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from "react"
 
 import Header from "./components/Header"
 import Red from "./Wines/Red"
@@ -15,21 +16,29 @@ import WelcomePage from './components/WelcomePage'
 
 function App() {
 const location = useLocation()
+const [searchQuery, setSearchQuery] = useState("");
+
+useEffect(() => {
+  setSearchQuery("")
+}, [location.pathname])
+
   return ( 
     <AnimatePresence>
-    <Header />
+    <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+    <div className="pt-16">
     <Routes location={location} key={location.pathname}>
-    <Route path="/" element={<WelcomePage />} />
-    <Route path="/red" element={<Red />} />
-    <Route path="/white" element={<White />} />
-    <Route path="/rose" element={<Rose />} />
-    <Route path="/sparkling" element={<Sparkling />} />
-    <Route path="/dessert" element={<Dessert />} />
-    <Route path="/port" element={<Port />} />
-    <Route path="/login" element={<LoginPage />} />
-    <Route path="/signup" element={<SignupPage />} />
-    <Route path="/favorites" element={<MyFavorites />} />
+      <Route path="/" element={<WelcomePage />} />
+      <Route path="/red" element={<Red searchQuery={searchQuery}/>} />
+      <Route path="/white" element={<White searchQuery={searchQuery}/>} />
+      <Route path="/rose" element={<Rose searchQuery={searchQuery}/>} />
+      <Route path="/sparkling" element={<Sparkling searchQuery={searchQuery}/>} />
+      <Route path="/dessert" element={<Dessert searchQuery={searchQuery}/>} />
+      <Route path="/port" element={<Port searchQuery={searchQuery}/>} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/favorites" element={<MyFavorites searchQuery={searchQuery}/>} />
     </Routes>
+  </div>
     </AnimatePresence>
 )}
 

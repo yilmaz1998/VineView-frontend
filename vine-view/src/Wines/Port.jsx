@@ -4,13 +4,12 @@ import NewReview from '../components/NewReview'
 import { motion } from 'framer-motion'
 
 
-const Port = () => {
+const Port = ({ searchQuery }) => {
   const URL = import.meta.env.VITE_API_URL 
   const [wine, setWine] = useState()
   const [selectedWine, setSelectedWine] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [error, setError] = useState(null)
-  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {      
     const userToken = localStorage.getItem("token")
@@ -75,19 +74,11 @@ const Port = () => {
     <motion.div
     initial={{ opacity:0 }}
     animate={{ opacity: 1 }}
-    transition={{ duration: 2 }}>
-      <div className='text-center mb-3'>
-    <h1 className='text-3xl'>Port Wines</h1>
-     <input 
-      type="text" 
-      placeholder="Search by wine" 
-      value={searchQuery} 
-      onChange={(e) => setSearchQuery(e.target.value)} 
-      className='form-control'
-      /></div>
-    <div className='flex'>
+    transition={{ duration: 2 }}
+    className="flex">
     <div
-    className='scroll w-1/2 h-screen overflow-y-scroll border-1 border-black'>
+     className='scroll w-1/2 h-[calc(100vh-4rem)] overflow-y-scroll border border-black'>
+      <h1 className='text-3xl text-center'>Port Wines</h1>
       {Array.isArray(filteredWines) && filteredWines.length > 0 ? (
         filteredWines.map((wines) => (
           <div>
@@ -108,12 +99,11 @@ const Port = () => {
         <p>Loading...</p>
       )}
     </div>
-    <div className='otherside w-1/2'>
+    <div className='otherside w-1/2 h-[calc(100vh-4rem)] overflow-y-auto'>
     {selectedWine && <ShowWines wines={selectedWine} />}
     {error && <p className='mt-2 bg-white font-bold text-red-500'>{error}</p>}
     {selectedWine && <button onClick={handleFavorite} class="mt-2 btn btn-success">Add to Favorites</button> }
     {selectedWine && <NewReview wineId={selectedWine._id} selectedWine={selectedWine} />}
-    </div>
     </div>
     </motion.div>
   )

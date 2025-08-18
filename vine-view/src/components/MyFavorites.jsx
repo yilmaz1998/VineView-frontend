@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react'
 import ShowFavorites from './ShowFavorites'
 import { motion } from 'framer-motion'
 
-const MyFavorites = () => {
+const MyFavorites = ({searchQuery}) => {
     const URL = import.meta.env.VITE_API_URL
     const [favorites, setFavorites] = useState([])
     const [selectedWine, setSelectedWine] = useState(null)
-    const [searchQuery, setSearchQuery] = useState('')
     
     useEffect(() => {
         fetch(`${URL}/favorite`, {
@@ -91,17 +90,10 @@ const MyFavorites = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.1 }}
+        className='flex'
         >
-        <h1 className='text-4xl text-center mb-2'>My Favorites</h1>
-        <input 
-            type="text" 
-            placeholder="Search by wine" 
-            value={searchQuery} 
-            onChange={(e) => setSearchQuery(e.target.value)} 
-            className='form-control'
-            />
-        <div className='flex mt-2'>
-            <div className='w-1/2 h-screen overflow-y-scroll border-1 border-black'>
+            <div className='scroll w-1/2 h-[calc(100vh-4rem)] overflow-y-scroll border-1 border-black'>
+            <h1 className='text-3xl text-center'>Favorites</h1>
                 {filteredWines.length > 0 ? (
                     filteredWines.map((favorite) => {
                         return (
@@ -127,7 +119,6 @@ const MyFavorites = () => {
             <div className='w-1/2'>
             {selectedWine && <ShowFavorites wine={selectedWine} />}
             </div>
-        </div>
         </motion.div>
     )
 }
