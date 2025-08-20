@@ -28,10 +28,10 @@ const ShowReview = ({ reviews, setReviews, fetchReviews }) => {
 
   return (
     <div className='mt-2'>
-    <h2 className='text-3xl font-bold'>Reviews</h2>
+    <h2 className='text-3xl font-bold text-center'>Reviews</h2>
     {error && <p className='text-red-500'>{error}</p>}
     {reviews.length === 0 ? (
-      <p>No reviews for this wine.</p>
+      <p className='text-center mt-2'>No reviews for this wine.</p>
     ) : (
       reviews.map((review, index) => (
         <div key={index} className='p-1 bg-white mt-2 text-black'>

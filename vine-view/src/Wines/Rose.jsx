@@ -99,7 +99,7 @@ const Rose = ({searchQuery}) => {
           </div>
         ))
       ) : (
-        <p>Loading...</p>
+        <p className='text-center mt-2'>No wines found.</p>
       )}
     </div>
     <div className='otherside w-1/2 h-[calc(100vh-4rem)] overflow-y-auto'>

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";
 
 
 const Header = ({searchQuery , setSearchQuery}) => {
+  const location = useLocation();
   const navigate = useNavigate();
   const username = localStorage.getItem('username') || 'Guest';
   const token = localStorage.getItem('token');
@@ -26,13 +27,15 @@ const Header = ({searchQuery , setSearchQuery}) => {
       <nav className="fixed top-0 left-0 w-full bg-gray-900 text-white shadow-md z-50 flex items-center justify-between px-4 h-16">
         <Link to="/" className="text-2xl font-bold">VineView</Link>
 
-        <input 
-        type="text" 
-        placeholder="Search by wine" 
-        value={searchQuery} 
-        onChange={(e) => setSearchQuery(e.target.value)} 
-        className='form-control w-1/2'
-      />
+        {location.pathname !== "/" && (
+          <input
+            type="text"
+            placeholder="Search by wine"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="form-control w-1/2"
+          />
+        )}
 
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
