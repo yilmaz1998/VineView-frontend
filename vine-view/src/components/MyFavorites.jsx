@@ -113,7 +113,7 @@ const MyFavorites = ({searchQuery}) => {
                         )
                     })
                 ) : (
-                    <p>No favorites found.</p>
+                    <p className='text-center mt-2'>No favorite wine found.</p>
                 )}
             </div>
             <div className='w-1/2'>
