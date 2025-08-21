@@ -80,14 +80,14 @@ const Sparkling = ({searchQuery}) => {
     animate={{ opacity: 1 }}
     transition={{ duration: 2 }}
     className="flex">
-      <div className='w-1/2'>
+      <div className='w-1/2 scroll'>
           <InfiniteScroll
         dataLength={wine ? wine.length : 0}
         next={fetchWines}
         hasMore={page <= totalPages}
         loader={<h4 className="text-center mt-2">Loading...</h4>}
         height={window.innerHeight - 64}
-        className='scroll overflow-y-scroll border border-black'
+        className='overflow-y-scroll border border-black'
       >
         <h1 className='text-3xl text-center'>Sparkling Wines</h1>
         {filteredWines.length > 0 ? (
