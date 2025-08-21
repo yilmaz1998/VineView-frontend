@@ -2,37 +2,41 @@ import React, {useState, useEffect} from 'react'
 import ShowWines from '../components/ShowWines'
 import NewReview from '../components/NewReview'
 import { motion } from 'framer-motion'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 
 const Port = ({ searchQuery }) => {
   const URL = import.meta.env.VITE_API_URL 
-  const [wine, setWine] = useState()
+  const [wine, setWine] = useState([])
   const [selectedWine, setSelectedWine] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [error, setError] = useState(null)
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const limit = 20
 
-  useEffect(() => {      
+  useEffect(() => {
     const userToken = localStorage.getItem("token")
     setIsLoggedIn(userToken)
-
-    fetch(`${URL}/wine/port`, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((res) => {
-      if(res.ok) {
-        return res.json()
-      } else {
-        throw new Error ('Failed to fetch')
-      }
-    })
-    .then((data) => {
-      console.log('Fetched data:', data)
-      setWine(data)
-    })
-    .catch((error) => console.error('Error fetching data:', error))
+  
+    fetchWines()
   }, [])
+  
+  const fetchWines = async () => {
+    try {
+      const res = await fetch(`${URL}/wine/port?page=${page}&limit=${limit}`, {
+        headers: { 'Content-Type': 'application/json' }
+      })
+      if (!res.ok) throw new Error('Failed to fetch')
+      const data = await res.json()
+      setWine(prev => [...prev, ...data.wines])
+      setTotalPages(data.totalPages)
+      setPage(prev => prev + 1)
+    } catch (err) {
+      console.error('Error fetching data:', err)
+      setError('Failed to fetch wines')
+    }
+  }
 
   const handleWineClick = (wines) => {
     setSelectedWine(wines)
@@ -76,29 +80,36 @@ const Port = ({ searchQuery }) => {
     animate={{ opacity: 1 }}
     transition={{ duration: 2 }}
     className="flex">
-    <div
-     className='scroll w-1/2 h-[calc(100vh-4rem)] overflow-y-scroll border border-black'>
-      <h1 className='text-3xl text-center'>Port Wines</h1>
-      {Array.isArray(filteredWines) && filteredWines.length > 0 ? (
-        filteredWines.map((wines) => (
-          <div>
-            <div 
-              key={wines._id} 
-              className={`wine mb-1 text-center border-1 border-black text-black ${
-                selectedWine && selectedWine._id === wines._id ? 'bg-blue-300' : 'bg-white'
-              }`}
-              style={{ cursor: 'pointer' }} 
-              onClick={() => handleWineClick(wines)}
-            >
-              <h1>{wines.winery}</h1>
-              <h1>{wines.wine}</h1>
+       <div className='w-1/2'>
+          <InfiniteScroll
+        dataLength={wine ? wine.length : 0}
+        next={fetchWines}
+        hasMore={page <= totalPages}
+        loader={<h4 className="text-center mt-2">Loading...</h4>}
+        height={window.innerHeight - 64}
+        className='scroll overflow-y-scroll border border-black'
+      >
+        <h1 className='text-3xl text-center'>Port Wines</h1>
+        {filteredWines.length > 0 ? (
+          filteredWines.map((wines) => (
+            <div key={wines._id} className="mb-1">
+              <div 
+                className={`wine text-center border-1 border-black text-black ${
+                  selectedWine && selectedWine._id === wines._id ? 'bg-blue-300' : 'bg-white'
+                }`}
+                style={{ cursor: 'pointer' }} 
+                onClick={() => handleWineClick(wines)}
+              >
+                <h1>{wines.winery}</h1>
+                <h1>{wines.wine}</h1>
+              </div>
             </div>
-          </div>
-        ))
-      ) : (
-        <p className='text-center mt-2'>No wines found.</p>
-      )}
-    </div>
+          ))
+        ) : (
+          <p className='text-center mt-2'>No wines found.</p>
+        )}
+      </InfiniteScroll>
+      </div>
     <div className='otherside w-1/2 h-[calc(100vh-4rem)] overflow-y-auto'>
     {selectedWine && <ShowWines wines={selectedWine} />}
     {error && <p className='mt-2 bg-white font-bold text-red-500'>{error}</p>}
